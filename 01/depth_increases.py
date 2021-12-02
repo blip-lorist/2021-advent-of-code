@@ -1,3 +1,4 @@
+# Part 1
 def count_increases(depths):
     increases = 0
     for i, depth in enumerate(depths):
@@ -7,6 +8,7 @@ def count_increases(depths):
     return increases
 
 
+# Part 2
 def window_sums_list(depths, window_size=3):
     window_sums = []
     for i, depth in enumerate(depths):
@@ -15,3 +17,8 @@ def window_sums_list(depths, window_size=3):
             window_sums.append(window_sum)
 
     return window_sums
+
+def window_sums_increases(depths):
+    window_sums = window_sums_list(depths)
+    increases = count_increases(window_sums)
+    return increases
