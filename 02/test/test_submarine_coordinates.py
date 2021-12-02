@@ -38,8 +38,8 @@ class TestMovement(unittest.TestCase):
 
 class TestMovementWithAim(unittest.TestCase):
     def test_move_down(self):
-        new_submarine = Submarine();
-        new_submarine.move("down", 5, use_aim=True)
+        new_submarine = Submarine(use_aim=True);
+        new_submarine.move("down", 5)
         expected_coordinates = {"horizontal": 0, "depth": 0}
         expected_aim = 5
 
@@ -47,6 +47,19 @@ class TestMovementWithAim(unittest.TestCase):
         actual_aim = new_submarine.aim
         self.assertEqual(expected_coordinates, actual_coordinates)
         self.assertEqual(expected_aim, actual_aim)
+
+    def test_move_forward_with_aim(self):
+        new_submarine = Submarine(use_aim=True);
+        new_submarine.move("down", 5)
+        new_submarine.move("forward", 8)
+        expected_coordinates = {"horizontal": 8, "depth": 40}
+        expected_aim = 5
+
+        actual_coordinates = new_submarine.coordinates
+        actual_aim = new_submarine.aim
+        self.assertEqual(expected_coordinates, actual_coordinates)
+        self.assertEqual(expected_aim, actual_aim)
+
 
 class TestPartOne(unittest.TestCase):
     def test_(self):

@@ -1,11 +1,12 @@
 class Submarine:
-    def __init__(self):
+    def __init__(self, use_aim=False):
+        self.use_aim = use_aim
         self.coordinates = {"horizontal": 0, "depth": 0}
         self.aim = 0
 
 
-    def move(self, direction, distance, use_aim=False):
-        if use_aim:
+    def move(self, direction, distance):
+        if self.use_aim:
             if direction == "down":
                 self.aim += distance
         else:
