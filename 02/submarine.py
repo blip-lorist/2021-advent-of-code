@@ -9,3 +9,6 @@ class Submarine:
 
         if direction == "down":
             self.coordinates["depth"] += distance
+
+        if direction == "up":
+            self.coordinates["depth"] -= distance
