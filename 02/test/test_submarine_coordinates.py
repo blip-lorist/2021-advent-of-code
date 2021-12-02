@@ -33,3 +33,24 @@ class TestSubmarineClass(unittest.TestCase):
         actual_coordinates = new_submarine.coordinates
         self.assertEqual(expected_coordinates, actual_coordinates)
 
+class TestPartOne(unittest.TestCase):
+    def test_(self):
+        new_submarine = Submarine();
+        movements = [
+            ("forward", 5),
+            ("down", 5),
+            ("forward", 8),
+            ("up", 3),
+            ("down", 8),
+            ("forward", 2),
+        ]
+
+        for movement in movements:
+            direction, distance  = movement
+            new_submarine.move(direction, distance)
+
+        expected_coordinates = {"horizontal": 15, "depth": 10}
+        actual_coordinates = new_submarine.coordinates
+
+        self.assertEqual(expected_coordinates, actual_coordinates)
+
