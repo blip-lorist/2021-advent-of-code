@@ -10,6 +10,7 @@ class TestSubmarineClass(unittest.TestCase):
         new_submarine = Submarine();
         self.assertTrue(hasattr(new_submarine, "coordinates"))
         self.assertTrue(hasattr(new_submarine, "aim"))
+        self.assertTrue(hasattr(new_submarine, "use_aim"))
         self.assertTrue("horizontal" in new_submarine.coordinates)
         self.assertTrue("depth" in new_submarine.coordinates)
 
