@@ -9,9 +9,12 @@ class TestSubmarineClass(unittest.TestCase):
     def test_submarine_coordinates(self):
         new_submarine = Submarine();
         self.assertTrue(hasattr(new_submarine, "coordinates"))
+        self.assertTrue(hasattr(new_submarine, "aim"))
         self.assertTrue("horizontal" in new_submarine.coordinates)
         self.assertTrue("depth" in new_submarine.coordinates)
 
+
+class TestMovement(unittest.TestCase):
     def test_move_forward(self):
         new_submarine = Submarine();
         new_submarine.move("forward", 5)
@@ -32,6 +35,18 @@ class TestSubmarineClass(unittest.TestCase):
         expected_coordinates = {"horizontal": 0, "depth": -5}
         actual_coordinates = new_submarine.coordinates
         self.assertEqual(expected_coordinates, actual_coordinates)
+
+class TestMovementWithAim(unittest.TestCase):
+    def test_move_down(self):
+        new_submarine = Submarine();
+        new_submarine.move("down", 5, use_aim=True)
+        expected_coordinates = {"horizontal": 0, "depth": 0}
+        expected_aim = 5
+
+        actual_coordinates = new_submarine.coordinates
+        actual_aim = new_submarine.aim
+        self.assertEqual(expected_coordinates, actual_coordinates)
+        self.assertEqual(expected_aim, actual_aim)
 
 class TestPartOne(unittest.TestCase):
     def test_(self):
