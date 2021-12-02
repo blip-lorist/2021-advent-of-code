@@ -10,4 +10,10 @@ class TestSubmarineClass(unittest.TestCase):
         new_submarine = Submarine();
         self.assertTrue(hasattr(new_submarine, "coordinates"))
 
+    def test_move(self):
+        new_submarine = Submarine();
+        new_submarine.move("forward", 5)
+        expected_coordinates = {"horizontal": 5}
+        actual_coordinates = new_submarine.coordinates
+        self.assertEqual(expected_coordinates, actual_coordinates)
 
