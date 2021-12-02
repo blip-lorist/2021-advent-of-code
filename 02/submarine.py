@@ -9,6 +9,10 @@ class Submarine:
         if self.use_aim:
             if direction == "down":
                 self.aim += distance
+
+            if direction == "forward":
+                self.coordinates["horizontal"] += distance
+                self.coordinates["depth"] = self.aim * distance
         else:
             if direction == "forward":
                 self.coordinates["horizontal"] += distance
