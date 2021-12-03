@@ -1,8 +1,9 @@
 import numpy as np
+import copy
 
 class BitArray:
     def __init__(self, bits):
-        self.bits = np.array(bits)
+        self.bits = bits
         self.decimal_gamma = None
         self.binary_gamma = None
         self.decimal_epsilon = None
@@ -12,10 +13,12 @@ class BitArray:
         binary_gamma_str = ""
         binary_gamma_array = []
 
-        rotated_array = np.rot90(self.bits, axes=(1,0))
+        np_arr = np.array(self.bits)
+        rotated_array = np.rot90(np_arr, axes=(1,0))
 
         for bit_slice in rotated_array:
             most_frequent_bit = np.bincount(bit_slice).argmax()
+
             binary_gamma_array.append(most_frequent_bit)
             binary_gamma_str += str(most_frequent_bit)
 
@@ -37,5 +40,21 @@ class BitArray:
 
         self.decimal_epsilon = int(str_binary_epsilon, 2)
 
+    def compute_oxygen_generator_rating(self):
+        if not self.binary_gamma:
+            self.compute_gamma_rate()
+
+        for idx, gamma in enumerate(self.binary_gamma):
+            bits_to_keep = copy.deepcopy(self.bits)
+            for bits in self.bits:
+
+                if gamma != bits[idx]:
+                    bits_to_keep.remove(bits)
 
 
+            self.bits = bits_to_keep
+            self.compute_gamma_rate()
+            print("new_gamma")
+            print(self.binary_gamma)
+            print("new_bits")
+            print(self.bits)
