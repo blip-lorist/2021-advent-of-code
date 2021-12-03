@@ -5,6 +5,8 @@ class BitArray:
         self.bits = np.array(bits)
         self.decimal_gamma = None
         self.binary_gamma = None
+        self.decimal_epsilon = None
+        self.binary_epsilon = None
 
     def compute_gamma_rate(self):
         binary_gamma_str = ""
