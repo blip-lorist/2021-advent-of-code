@@ -32,3 +32,28 @@ class TestComputeGammaRate(unittest.TestCase):
         actual_binary_gamma = new_bit_array.binary_gamma
         self.assertEqual(expected_decimal_gamma, actual_decimal_gamma)
         self.assertEqual(expected_binary_gamma, actual_binary_gamma)
+
+    def test_compute_epsilon_rate(self):
+        bits = [[0, 0, 1, 0, 0],
+                [1, 1, 1, 1, 0],
+                [1, 0, 1, 1, 0],
+                [1, 0, 1, 1, 1],
+                [1, 0, 1, 0, 1],
+                [0, 1, 1, 1, 1],
+                [0, 0, 1, 1, 1],
+                [1, 1, 1, 0, 0],
+                [1, 0, 0, 0, 0],
+                [1, 1, 0, 0, 1],
+                [0, 0, 0, 1, 0],
+                [0, 1, 0, 1, 0]]
+
+        new_bit_array = BitArray(bits)
+
+        expected_decimal_epsilon = 9
+        expected_binary_epsilon = [0, 1, 0, 0, 1]
+
+        new_bit_array.compute_epsilon_rate()
+        actual_epsilon_rate = new_bit_array.decimal_epsilon
+        actual_binary_epsilon = new_bit_array.binary_epsilon
+        self.assertEqual(expected_decimal_epsilon, actual_decimal_epsilon)
+        self.assertEqual(expected_binary_epsilon, actual_binary_epsilon)
