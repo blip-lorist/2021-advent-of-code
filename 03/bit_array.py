@@ -14,6 +14,10 @@ class BitArray:
         self.binary_oxygen_rating = None
         self.decimal_oxygen_rating = None
 
+        self.binary_co2_rating = None
+        self.decimal_co2_rating = None
+
+
     def compute_gamma_rate(self):
         binary_gamma_str = ""
         binary_gamma_array = []
@@ -58,7 +62,7 @@ class BitArray:
             for bits in self.bits:
 
                 current_gamma = self.binary_gamma[idx]
-                if current_gamma != bits[idx]:
+                if len(bits_to_keep) > 1 and current_gamma != bits[idx]:
                     bits_to_keep.remove(bits)
 
 
@@ -70,4 +74,28 @@ class BitArray:
         str_binary_oxygen = "".join(str_binary_oxygen)
         self.decimal_oxygen_rating = int(str_binary_oxygen, 2)
 
+    def compute_co2_scrubber_rating(self):
+        if not self.binary_gamma:
+            self.compute_gamma_rate()
+
+        if not self.binary_epsilon:
+            self.compute_epsilon_rate()
+
+
+        for idx, _ in enumerate(self.binary_epsilon):
+            bits_to_keep = copy.deepcopy(self.bits)
+            for bits in self.bits:
+
+                current_epsilon = self.binary_epsilon[idx]
+                if len(bits_to_keep) > 1 and current_epsilon != bits[idx]:
+                    bits_to_keep.remove(bits)
+
+            self.bits = bits_to_keep
+            self.compute_gamma_rate()
+            self.compute_epsilon_rate()
+
+        self.binary_co2_rating = self.bits[0]
+        str_binary_co2 = [str(x) for x in self.binary_co2_rating]
+        str_binary_co2 = "".join(str_binary_co2)
+        self.decimal_co2_rating = int(str_binary_co2, 2)
 
