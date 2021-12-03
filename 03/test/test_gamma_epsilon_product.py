@@ -1,5 +1,7 @@
 import unittest
 from bit_array import BitArray
+import numpy as np
+
 
 class TestBitArrayClass(unittest.TestCase):
     def test_init_bit_array(self):
@@ -50,10 +52,11 @@ class TestComputeGammaRate(unittest.TestCase):
         new_bit_array = BitArray(bits)
 
         expected_decimal_epsilon = 9
-        expected_binary_epsilon = [0, 1, 0, 0, 1]
+        expected_binary_epsilon = np.array([0, 1, 0, 0, 1])
 
         new_bit_array.compute_epsilon_rate()
-        actual_epsilon_rate = new_bit_array.decimal_epsilon
+        actual_decimal_epsilon = new_bit_array.decimal_epsilon
         actual_binary_epsilon = new_bit_array.binary_epsilon
+
         self.assertEqual(expected_decimal_epsilon, actual_decimal_epsilon)
-        self.assertEqual(expected_binary_epsilon, actual_binary_epsilon)
+        np.testing.assert_array_equal(expected_binary_epsilon, actual_binary_epsilon)

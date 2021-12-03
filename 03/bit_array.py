@@ -22,4 +22,18 @@ class BitArray:
         self.binary_gamma = binary_gamma_array
 
 
+    def compute_epsilon_rate(self):
+        if not self.binary_gamma:
+            self.compute_gamma_rate()
+
+        np_binary_gamma = np.array(self.binary_gamma)
+        binary_epsilon = 1-np_binary_gamma
+        str_binary_epsilon = [str(x) for x in binary_epsilon]
+        str_binary_epsilon = "".join(str_binary_epsilon)
+
+        self.binary_epsilon = binary_epsilon
+
+        self.decimal_epsilon = int(str_binary_epsilon, 2)
+
+
 
