@@ -60,3 +60,30 @@ class TestComputeGammaRate(unittest.TestCase):
 
         self.assertEqual(expected_decimal_epsilon, actual_decimal_epsilon)
         np.testing.assert_array_equal(expected_binary_epsilon, actual_binary_epsilon)
+
+
+    def test_compute_oxygen_generator_rating(self):
+        bits = [[0, 0, 1, 0, 0],
+                [1, 1, 1, 1, 0],
+                [1, 0, 1, 1, 0],
+                [1, 0, 1, 1, 1],
+                [1, 0, 1, 0, 1],
+                [0, 1, 1, 1, 1],
+                [0, 0, 1, 1, 1],
+                [1, 1, 1, 0, 0],
+                [1, 0, 0, 0, 0],
+                [1, 1, 0, 0, 1],
+                [0, 0, 0, 1, 0],
+                [0, 1, 0, 1, 0]]
+
+        new_bit_array = BitArray(bits)
+
+        expected_decimal_rating = 23
+        expected_binary_rating = np.array([1, 0, 1, 1, 1])
+
+        new_bit_array.compute_oxygen_generator_rating()
+        actual_decimal_rating = new_bit_array.decimal_oxygen_rating
+        actual_binary_rating = new_bit_array.binary_oxygen_rating
+
+        self.assertEqual(expected_decimal_rating, actual_decimal_rating)
+        np.testing.assert_array_equal(expected_binary_rating, actual_binary_rating)
