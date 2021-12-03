@@ -87,3 +87,29 @@ class TestComputeGammaRate(unittest.TestCase):
 
         self.assertEqual(expected_decimal_rating, actual_decimal_rating)
         np.testing.assert_array_equal(expected_binary_rating, actual_binary_rating)
+
+    def test_compute_co2_scrubber_rating(self):
+        bits = [[0, 0, 1, 0, 0],
+                [1, 1, 1, 1, 0],
+                [1, 0, 1, 1, 0],
+                [1, 0, 1, 1, 1],
+                [1, 0, 1, 0, 1],
+                [0, 1, 1, 1, 1],
+                [0, 0, 1, 1, 1],
+                [1, 1, 1, 0, 0],
+                [1, 0, 0, 0, 0],
+                [1, 1, 0, 0, 1],
+                [0, 0, 0, 1, 0],
+                [0, 1, 0, 1, 0]]
+
+        new_bit_array = BitArray(bits)
+
+        expected_decimal_rating = 10
+        expected_binary_rating = np.array([0, 1, 0, 1, 0])
+
+        new_bit_array.compute_co2_scrubber_rating()
+        actual_decimal_rating = new_bit_array.decimal_co2_rating
+        actual_binary_rating = new_bit_array.binary_co2_rating
+
+        self.assertEqual(expected_decimal_rating, actual_decimal_rating)
+        np.testing.assert_array_equal(expected_binary_rating, actual_binary_rating)
