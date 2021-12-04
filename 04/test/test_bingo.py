@@ -47,11 +47,10 @@ class TestBingo(unittest.TestCase):
 
     def test_compute_final_score(self):
         board = BingoBoard(self.board_values)
-        board.mark_tile(14)
-        board.mark_tile(21)
-        board.mark_tile(17)
-        board.mark_tile(4)
-        board.mark_tile(24)
+        tiles = [7,4,9,5,11,17,23,2,0,14,21,24]
+        for value in tiles:
+            board.mark_tile(value)
 
         expected_final_score = 4512
-        actual_final_score = compute_final_score()
+        actual_final_score = board.compute_final_score()
+        self.assertEqual(expected_final_score, actual_final_score)
