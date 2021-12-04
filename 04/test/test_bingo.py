@@ -33,3 +33,13 @@ class TestBingo(unittest.TestCase):
         expected_win_state = False
         actual_win_state = board.has_win()
         self.assertEqual(expected_win_state, actual_win_state)
+
+        board.mark_tile(14)
+        board.mark_tile(21)
+        board.mark_tile(17)
+        board.mark_tile(4)
+        board.mark_tile(24)
+
+        expected_win_state = True
+        actual_win_state = board.has_win()
+        self.assertEqual(expected_win_state, actual_win_state)
