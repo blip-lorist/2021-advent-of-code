@@ -16,6 +16,7 @@ class TestBingo(unittest.TestCase):
     def test_init_bingo_board(self):
         board = BingoBoard(self.board_values)
         self.assertTrue(hasattr(board, "values"))
+        self.assertTrue(hasattr(board, "last_number_checked"))
         self.assertEqual(self.board_values, board.values)
 
     def test_mark_tile(self):

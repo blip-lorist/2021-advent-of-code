@@ -4,12 +4,14 @@ from collections import Counter
 class BingoBoard:
     def __init__(self, values):
         self.values = values
+        self.last_number_checked = None
         self.marked_coordinates = []
 
     def mark_tile(self, value):
         values_ndarray = np.array(self.values)
         coordinates = zip(*np.where(values_ndarray == value))
         self.marked_coordinates += coordinates
+        self.last_number_checked = value
 
     def has_win(self):
         # Win if any x coordinate has a count of 5
