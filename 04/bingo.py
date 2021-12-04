@@ -7,6 +7,7 @@ class BingoBoard:
         self.values = values
         self.last_number_checked = None
         self.marked_coordinates = []
+        self.won = False
 
     def mark_tile(self, value):
         values_ndarray = np.array(self.values)
@@ -30,10 +31,12 @@ class BingoBoard:
 
         for coordinate, count in counter["x"].items():
             if count == 5:
+                self.won = True
                 return True
 
         for coordinate, count in counter["y"].items():
             if count == 5:
+                self.won = True
                 return True
 
         return False
