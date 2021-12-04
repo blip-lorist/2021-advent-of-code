@@ -2,7 +2,7 @@ import unittest
 from bingo import BingoBoard
 
 
-class TestBitArrayClass(unittest.TestCase):
+class TestBingo(unittest.TestCase):
 
     def setUp(self):
         self.board_values = [
@@ -18,3 +18,10 @@ class TestBitArrayClass(unittest.TestCase):
         self.assertTrue(hasattr(board, "values"))
         self.assertEqual(self.board_values, board.values)
 
+    def test_mark_tile(self):
+        board = BingoBoard(self.board_values)
+        board.mark_tile(7)
+
+        expected_coordinates = [(4, 4)]
+        actual_coordinates = board.marked_coordinates
+        self.assertEqual(expected_coordinates, actual_coordinates)
