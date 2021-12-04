@@ -25,3 +25,11 @@ class TestBingo(unittest.TestCase):
         expected_coordinates = [(4, 4)]
         actual_coordinates = board.marked_coordinates
         self.assertEqual(expected_coordinates, actual_coordinates)
+
+    def test_has_win(self):
+        board = BingoBoard(self.board_values)
+        board.mark_tile(7)
+
+        expected_win_state = False
+        actual_win_state = board.has_win()
+        self.assertEqual(expected_win_state, actual_win_state)
