@@ -20,5 +20,6 @@ class TestVentMap(unittest.TestCase):
 
     def test_init_vent_map(self):
         vent_map = VentMap(self.lines)
-        self.assertTrue(hasattr(vent_map, "render"))
+        self.assertTrue(hasattr(vent_map, "lines"))
+        self.assertTrue(hasattr(vent_map, "covered_coords"))
 
