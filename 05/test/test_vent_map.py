@@ -21,5 +21,31 @@ class TestVentMap(unittest.TestCase):
     def test_init_vent_map(self):
         vent_map = VentMap(self.lines)
         self.assertTrue(hasattr(vent_map, "lines"))
-        self.assertTrue(hasattr(vent_map, "covered_coords"))
+        self.assertTrue(hasattr(vent_map, "covered_points"))
+
+    def test_generate_covered_points(self):
+        vent_map = VentMap(self.lines)
+        vent_map.generate_covered_points()
+
+        expected_points = [
+                (7, 0),
+                (7, 1),
+                (7, 2),
+                (7, 3),
+                (2, 1),
+                (2, 2),
+                (1, 4),
+                (2, 4),
+                (3, 4),
+                (3, 4),
+                (4, 4),
+                (5, 4),
+                (6, 4),
+                (7, 4),
+                (7, 4),
+                (8, 4),
+                (9, 4),
+        ]
+
+        self.assertEqual(expected_points, vent_map.covered_points)
 

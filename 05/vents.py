@@ -1,6 +1,6 @@
 class VentMap:
     def __init__(self, lines):
         self.lines = lines
-        self.covered_coords = []
+        self.covered_points = []
 
 
